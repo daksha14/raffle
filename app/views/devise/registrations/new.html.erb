@@ -1,0 +1,45 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="row justify-content-center">
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-header text-primary">
+          <h2>Sign up</h2>
+        </div>
+        <div class="card-body">
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control"%>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password",class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control" %>
+          </div><br/>
+  
+          <div class="field">
+            <%= f.label 'Select Raffle' %><br />
+            <%= f.select  :raffle_id, Raffle.pluck(:name, :id), {include_blank: 'select raffle'},{class: 'form-control'}%><br />
+          </div><br/>
+
+          <div class="actions">
+            <%= f.submit "Sign up" ,class: "btn btn-primary" %>
+          </div>
+        </div>  
+        <div class="card-footer">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
